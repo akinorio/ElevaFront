@@ -1,0 +1,49 @@
+<hr>
+<h4>Turmas</h4>
+
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+
+            </th>
+            <th>
+                Nome
+            </th>
+            <th>
+                Escola
+            </th>
+            <th>
+                Ativo?
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let turma of turmas">
+            <td>
+                <img src="{{ imagens }}{{ turma.imagem }}" style="width: 70px; height: 100px">
+            </td>
+            <td>
+                {{ turma.nome }}
+            </td>
+            <td>
+                {{ turma.nomeEscola }}
+            </td>
+            <td>
+                <input [checked]="turma.ativo" class="check-box" disabled="disabled" type="checkbox">
+            </td>
+            <td class="text-right">
+                <a class="btn btn-warning" [routerLink]="['/turmas/detalhes',turma.id]">
+                    <span class="fa fa-search"></span>
+                </a>&nbsp;
+                <a class="btn btn-info" [routerLink]="['/turmas/editar',turma.id]">
+                    <span class="fa fa-pencil-alt"></span>
+                </a>&nbsp;
+                <a class="btn btn-danger" [routerLink]="['/turmas/excluir',turma.id]">
+                    <span class="fa fa-trash"></span>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
