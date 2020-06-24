@@ -16,13 +16,10 @@ const turmaRouterConfig: Routes = [
             { path: 'listar-todos', component: ListaComponent },
             {
                 path: 'adicionar-novo', component: NovoComponent,
-                canDeactivate: [TurmaGuard],
-                canActivate: [TurmaGuard],
                 data: [{ claim: { nome: 'Turma', valor: 'Adicionar' } }],
             },
             {
                 path: 'editar/:id', component: EditarComponent,
-                canActivate: [TurmaGuard],
                 data: [{ claim: { nome: 'Turma', valor: 'Atualizar' } }],
                 resolve: {
                     turma: TurmaResolve
@@ -36,7 +33,6 @@ const turmaRouterConfig: Routes = [
             },
             {
                 path: 'excluir/:id', component: ExcluirComponent,
-                canActivate: [TurmaGuard],
                 data: [{ claim: { nome: 'Turma', valor: 'Excluir' } }],
                 resolve: {
                     turma: TurmaResolve

@@ -46,7 +46,6 @@ export class NovoComponent extends TurmaBaseComponent implements OnInit {
       escolaId: ['', [Validators.required]],
       nome: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(200)]],
       descricao: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(1000)]],
-      imagem: ['', [Validators.required]],
       ativo: [true]
     });
   }

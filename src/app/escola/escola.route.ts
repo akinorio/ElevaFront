@@ -17,13 +17,10 @@ const escolaRouterConfig: Routes = [
             { path: 'listar-todos', component: ListaComponent },
             {
                 path: 'adicionar-novo', component: NovoComponent,
-                canDeactivate: [EscolaGuard],
-                canActivate: [EscolaGuard],
                 data: [{ claim: { nome: 'Escola', valor: 'Adicionar'}}]
             },
             {
                 path: 'editar/:id', component: EditarComponent,
-                canActivate: [EscolaGuard],
                 data: [{ claim: { nome: 'Escola', valor: 'Atualizar' } }],
                 resolve: {
                     escola: EscolaResolve
@@ -37,7 +34,6 @@ const escolaRouterConfig: Routes = [
             },
             {
                 path: 'excluir/:id', component: ExcluirComponent,
-                canActivate: [EscolaGuard],
                 data: [{ claim: { nome: 'Escola', valor: 'Excluir' } }],
                 resolve: {
                     escola: EscolaResolve

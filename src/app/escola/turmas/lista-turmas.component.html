@@ -22,13 +22,10 @@
     <tbody>
         <tr *ngFor="let turma of turmas">
             <td>
-                <img src="{{ imagens }}{{ turma.imagem }}" style="width: 70px; height: 100px">
-            </td>
-            <td>
                 {{ turma.nome }}
             </td>
             <td>
-                {{ turma.nomeEscola }}
+                {{ turma.descricao }}
             </td>
             <td>
                 <input [checked]="turma.ativo" class="check-box" disabled="disabled" type="checkbox">
@@ -38,7 +35,7 @@
                     <span class="fa fa-search"></span>
                 </a>&nbsp;
                 <a class="btn btn-info" [routerLink]="['/turmas/editar',turma.id]">
-                    <span class="fa fa-pencil-alt"></span>
+                    <span class="fa fa-pencil"></span>
                 </a>&nbsp;
                 <a class="btn btn-danger" [routerLink]="['/turmas/excluir',turma.id]">
                     <span class="fa fa-trash"></span>

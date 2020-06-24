@@ -1,15 +1,20 @@
 <div class="container main-container">
     <h1>Detalhes do {{ escola.nome }}</h1>
+    <hr />
 
     <div>
-        <h4>Informação somente leitura</h4>
-        <hr />
         <dl class="row">
             <dt class="col-sm-2">
                 <label class="control-label">Nome</label>
             </dt>
             <dd class="col-sm-10">
                 {{ escola.nome }}
+            </dd>
+            <dt class="col-sm-2">
+                <label class="control-label">Descrição</label>
+            </dt>
+            <dd class="col-sm-10">
+                {{ escola.descricao }}
             </dd>
             <dt class="col-sm-2">
                 <label class="control-label">Ativo</label>

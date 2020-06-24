@@ -11,10 +11,10 @@
         <thead class="thead-dark">
             <tr>
                 <th>
-
+                    Nome
                 </th>
                 <th>
-                    Nome
+                    Descricao
                 </th>
                 <th>
                     Escola
@@ -28,10 +28,10 @@
         <tbody>
             <tr *ngFor="let turma of turmas">
                 <td>
-                    <img src="{{ imagens }}{{ turma.imagem }}" style="width: 70px; height: 100px">
+                    {{ turma.nome }}
                 </td>
                 <td>
-                    {{ turma.nome }}
+                    {{ turma.descricao }}
                 </td>
                 <td>
                     {{ turma.nomeEscola }}
@@ -44,7 +44,7 @@
                         <span class="fa fa-search"></span>
                     </a>&nbsp;
                     <a class="btn btn-info" [routerLink]="['/turmas/editar',turma.id]">
-                        <span class="fa fa-pencil-alt"></span>
+                        <span class="fa fa-pencil"></span>
                     </a>&nbsp;
                     <a class="btn btn-danger" [routerLink]="['/turmas/excluir',turma.id]">
                         <span class="fa fa-trash"></span>

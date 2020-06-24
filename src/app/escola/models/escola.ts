@@ -4,9 +4,8 @@ import { Turma } from 'src/app/turma/models/turma';
 export class Escola {
     id: string;
     nome: string;
-    documento: string;
+    descricao: string;
     ativo: boolean;
-    tipoEscola: number;
     endereco: Endereco;
     turmas: Turma[]
 }

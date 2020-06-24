@@ -40,30 +40,9 @@ export class NovoComponent extends FormBaseComponent implements OnInit {
       nome: {
         required: 'Informe o Nome',
       },
-      documento: {
-        required: 'Informe o Documento',
-        cpf: 'CPF em formato inválido',
-        cnpj: 'CNPJ em formato inválido'
+      descricao: {
+        required: 'Informe a Descrição',
       },
-      logradouro: {
-        required: 'Informe o Logradouro',
-      },
-      numero: {
-        required: 'Informe o Número',
-      },
-      bairro: {
-        required: 'Informe o Bairro',
-      },
-      cep: {
-        required: 'Informe o CEP',
-        cep: 'CEP em formato inválido'
-      },
-      cidade: {
-        required: 'Informe a Cidade',
-      },
-      estado: {
-        required: 'Informe o Estado',
-      }
     };
 
     super.configurarMensagensValidacaoBase(this.validationMessages);
@@ -73,19 +52,8 @@ export class NovoComponent extends FormBaseComponent implements OnInit {
 
     this.escolaForm = this.fb.group({
       nome: ['', [Validators.required]],
-      documento: ['', [Validators.required, NgBrazilValidators.cpf]],
       ativo: ['', [Validators.required]],
-      tipoEscola: ['', [Validators.required]],
 
-      endereco: this.fb.group({
-        logradouro: ['', [Validators.required]],
-        numero: ['', [Validators.required]],
-        complemento: [''],
-        bairro: ['', [Validators.required]],
-        cep: ['', [Validators.required, NgBrazilValidators.cep]],
-        cidade: ['', [Validators.required]],
-        estado: ['', [Validators.required]]
-      })
     });
 
     this.escolaForm.patchValue({ tipoEscola: '1', ativo: true });
@@ -155,9 +123,9 @@ export class NovoComponent extends FormBaseComponent implements OnInit {
       this.formResult = JSON.stringify(this.escola);
 
       this.escola.endereco.cep = StringUtils.somenteNumeros(this.escola.endereco.cep);
-      this.escola.documento = StringUtils.somenteNumeros(this.escola.documento);
+      //this.escola.documento = StringUtils.somenteNumeros(this.escola.documento);
       // forçando o tipo escola ser serializado como INT
-      this.escola.tipoEscola = parseInt(this.escola.tipoEscola.toString());
+      //this.escola.tipoEscola = parseInt(this.escola.tipoEscola.toString());
 
       this.escolaService.novoEscola(this.escola)
         .subscribe(
@@ -171,7 +139,7 @@ export class NovoComponent extends FormBaseComponent implements OnInit {
     this.escolaForm.reset();
     this.errors = [];
 
-    this.mudancasNaoSalvas = false;
+    //this.mudancasNaoSalvas = false;
 
     let toast = this.toastr.success('Escola cadastrada com sucesso!', 'Sucesso!');
     if (toast) {

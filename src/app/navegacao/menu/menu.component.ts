@@ -14,13 +14,13 @@ export class MenuComponent {
       admin: false
     },
     {
-      link: '/escola',
+      link: '/escolas/listar-todos',
       name: 'Escolas',
       exact: true,
       admin: false
     },
     {
-      link: '/turma',
+      link: '/turmas/listar-todos',
       name: 'Turmas',
       exact: false,
       admin: false

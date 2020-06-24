@@ -1,6 +1,7 @@
 <div class="container main-container">
 
     <h1>Lista de Escolas</h1>
+    <hr>
 
     <p>
         <a class="btn btn-info" [routerLink]="['/escolas/adicionar-novo']">Nova Escola</a>
@@ -10,7 +11,7 @@
         <thead class="thead-dark">
             <tr>
                 <th>Nome</th>
-                <th>Documento</th>
+                <th>Descrição</th>
                 <th>Ativo?</th>
                 <th></th>
             </tr>
@@ -20,7 +21,7 @@
                 {{ escola.nome }}
             </td>
             <td>
-                {{escola.tipoEscola === 1 ? (escola.documento | cpf) : (escola.documento | cnpj ) }}
+                {{escola.descricao}}
             </td>
             <td>
                 <input [checked]="escola.ativo" class="check-box" disabled="disabled" type="checkbox">
@@ -30,7 +31,7 @@
                     <span class="fa fa-search"></span>
                 </a>&nbsp;
                 <a class="btn btn-warning" [routerLink]="['/escolas/editar',escola.id]">
-                    <span class="fa fa-pencil-alt"></span>
+                    <span class="fa fa-pencil"></span>
                 </a>&nbsp;
                 <a class="btn btn-danger" [routerLink]="['/escolas/excluir',escola.id]">
                     <span class="fa fa-trash"></span>

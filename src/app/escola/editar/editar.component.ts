@@ -79,7 +79,7 @@ export class EditarComponent extends FormBaseComponent implements OnInit {
     super.configurarMensagensValidacaoBase(this.validationMessages);
 
     this.escola = this.route.snapshot.data['escola'];
-    this.tipoEscola = this.escola.tipoEscola;
+    //this.tipoEscola = this.escola.tipoEscola;
   }
 
   ngOnInit() {
@@ -89,6 +89,7 @@ export class EditarComponent extends FormBaseComponent implements OnInit {
     this.escolaForm = this.fb.group({
       id: '',
       nome: ['', [Validators.required]],
+      descricao: ['', [Validators.required]],
       documento: '',
       ativo: ['', [Validators.required]],
       tipoEscola: ['', [Validators.required]]
@@ -118,91 +119,92 @@ export class EditarComponent extends FormBaseComponent implements OnInit {
     this.escolaForm.patchValue({
       id: this.escola.id,
       nome: this.escola.nome,
+      descricao: this.escola.descricao,
       ativo: this.escola.ativo,
-      tipoEscola: this.escola.tipoEscola.toString(),
-      documento: this.escola.documento
+      // tipoEscola: this.escola.tipoEscola.toString(),
+      // documento: this.escola.documento
     });
 
-    if (this.tipoEscolaForm().value === "1") {
-      this.documento().setValidators([Validators.required, NgBrazilValidators.cpf]);
-    }
-    else {
-      this.documento().setValidators([Validators.required, NgBrazilValidators.cnpj]);
-    }
+    // if (this.tipoEscolaForm().value === "1") {
+    //   this.documento().setValidators([Validators.required, NgBrazilValidators.cpf]);
+    // }
+    // else {
+    //   this.documento().setValidators([Validators.required, NgBrazilValidators.cnpj]);
+    // }
 
-    this.enderecoForm.patchValue({
-      id: this.escola.endereco.id,
-      logradouro: this.escola.endereco.logradouro,
-      numero: this.escola.endereco.numero,
-      complemento: this.escola.endereco.complemento,
-      bairro: this.escola.endereco.bairro,
-      cep: this.escola.endereco.cep,
-      cidade: this.escola.endereco.cidade,
-      estado: this.escola.endereco.estado
-    });
+    // this.enderecoForm.patchValue({
+    //   id: this.escola.endereco.id,
+    //   logradouro: this.escola.endereco.logradouro,
+    //   numero: this.escola.endereco.numero,
+    //   complemento: this.escola.endereco.complemento,
+    //   bairro: this.escola.endereco.bairro,
+    //   cep: this.escola.endereco.cep,
+    //   cidade: this.escola.endereco.cidade,
+    //   estado: this.escola.endereco.estado
+    // });
   }
 
   ngAfterViewInit() {
-    this.tipoEscolaForm().valueChanges.subscribe(() => {
-      this.trocarValidacaoDocumento();
-      super.configurarValidacaoFormularioBase(this.formInputElements, this.escolaForm)
-      super.validarFormulario(this.escolaForm)
-    });
+    // this.tipoEscolaForm().valueChanges.subscribe(() => {
+    //   //this.trocarValidacaoDocumento();
+    //   super.configurarValidacaoFormularioBase(this.formInputElements, this.escolaForm)
+    //   super.validarFormulario(this.escolaForm)
+    // });
 
-    super.configurarValidacaoFormularioBase(this.formInputElements, this.escolaForm);
+    // super.configurarValidacaoFormularioBase(this.formInputElements, this.escolaForm);
   }
 
-  trocarValidacaoDocumento() {
+  // trocarValidacaoDocumento() {
 
-    if (this.tipoEscolaForm().value === "1") {
-      this.documento().clearValidators();
-      this.documento().setValidators([Validators.required, NgBrazilValidators.cpf]);
-    }
+  //   if (this.tipoEscolaForm().value === "1") {
+  //     this.documento().clearValidators();
+  //     this.documento().setValidators([Validators.required, NgBrazilValidators.cpf]);
+  //   }
 
-    else {
-      this.documento().clearValidators();
-      this.documento().setValidators([Validators.required, NgBrazilValidators.cnpj]);
-    }
-  }
+  //   else {
+  //     this.documento().clearValidators();
+  //     this.documento().setValidators([Validators.required, NgBrazilValidators.cnpj]);
+  //   }
+  // }
 
   documento(): AbstractControl {
     return this.escolaForm.get('documento');
   }
 
-  tipoEscolaForm(): AbstractControl {
-    return this.escolaForm.get('tipoEscola');
-  }
+  // tipoEscolaForm(): AbstractControl {
+  //   return this.escolaForm.get('tipoEscola');
+  // }
 
-  buscarCep(cep: string) {
+  // buscarCep(cep: string) {
 
-    cep = StringUtils.somenteNumeros(cep);
-    if (cep.length < 8) return;
+  //   cep = StringUtils.somenteNumeros(cep);
+  //   if (cep.length < 8) return;
 
-    this.escolaService.consultarCep(cep)
-      .subscribe(
-        cepRetorno => this.preencherEnderecoConsulta(cepRetorno),
-        erro => this.errors.push(erro));
-  }
+  //   this.escolaService.consultarCep(cep)
+  //     .subscribe(
+  //       cepRetorno => this.preencherEnderecoConsulta(cepRetorno),
+  //       erro => this.errors.push(erro));
+  // }
 
-  preencherEnderecoConsulta(cepConsulta: CepConsulta) {
+  // preencherEnderecoConsulta(cepConsulta: CepConsulta) {
 
-    this.enderecoForm.patchValue({
-      logradouro: cepConsulta.logradouro,
-      bairro: cepConsulta.bairro,
-      cep: cepConsulta.cep,
-      cidade: cepConsulta.localidade,
-      estado: cepConsulta.uf
-    });
-  }
+  //   this.enderecoForm.patchValue({
+  //     logradouro: cepConsulta.logradouro,
+  //     bairro: cepConsulta.bairro,
+  //     cep: cepConsulta.cep,
+  //     cidade: cepConsulta.localidade,
+  //     estado: cepConsulta.uf
+  //   });
+  // }
 
   editarEscola() {
     if (this.escolaForm.dirty && this.escolaForm.valid) {
 
       this.escola = Object.assign({}, this.escola, this.escolaForm.value);
-      this.escola.documento = StringUtils.somenteNumeros(this.escola.documento);
+      //this.escola.documento = StringUtils.somenteNumeros(this.escola.documento);
 
       /* Workaround para evitar cast de string para int no back-end */
-      this.escola.tipoEscola = parseInt(this.escola.tipoEscola.toString());
+      //this.escola.tipoEscola = parseInt(this.escola.tipoEscola.toString());
 
       this.escolaService.atualizarEscola(this.escola)
         .subscribe(

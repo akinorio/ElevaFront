@@ -1,9 +1,9 @@
 <div class="container main-container">
 
-    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="pacman" [fullScreen]="true">
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
         <p style="color: white"> Processando... </p>
     </ngx-spinner>
-
+<p></p>
     <h1>Editar Escola</h1>
     <hr>
     <form novalidate="novalidate" (ngSubmit)="editarEscola()" [formGroup]="escolaForm">
@@ -32,15 +32,28 @@
                     </div>
                 </div>
 
+                <br>
+                
+                <div>
+                    <label class="control-label">Descrição</label>
+                    <div>
+                        <input class="form-control" id="descricao" type="text" placeholder="Descrição (requerido)"
+                            formControlName="descricao" [ngClass]="{'is-invalid': displayMessage.descricao }" />
+                        <span class="text-danger" *ngIf="displayMessage.descricao">
+                            <p [innerHTML]="displayMessage.descricao"></p>
+                        </span>
+                    </div>
+                </div>
+
             </div>
         </div>
 
         <div class="form-group">
-            <input type="submit" value="Editar" class="btn btn-primary">&nbsp;
+            <input type="submit" value="Gravar Edição" class="btn btn-primary">&nbsp;
             <a class="btn btn-info" [routerLink]="['/escolas/listar-todos']">Voltar</a>
         </div>
 
-        <div>
+        <!-- <div>
 
             <div style="padding-top: 20px">
                 <div>
@@ -101,14 +114,14 @@
                             </td>
                             <td>
                                 <a class="btn btn-info" href="javascript:void(0)" (click)="abrirModal(content)">
-                                    <span title="Editar" class="fa fa-pencil-alt"></span>
+                                    <span title="Editar" class="fa fa-pencil"></span>
                                 </a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div> -->
     </form>
 
     <!-- <lista-escola [escolas]="escola.turmas"></lista-escola> -->
@@ -121,7 +134,7 @@
             </button>
         </div>
 
-        <form (ngSubmit)="editarEndereco()" [formGroup]="enderecoForm">
+        <!-- <form (ngSubmit)="editarEndereco()" [formGroup]="enderecoForm">
             <div class="modal-body">
 
                 <div class="alert alert-danger" *ngIf="errorsEndereco.length > 0">
@@ -237,7 +250,7 @@
             <div class="modal-footer">
                 <input type="submit" value="Atualizar" class="btn btn-primary">
             </div>
-        </form>
+        </form> -->
 
     </ng-template>
 </div>
